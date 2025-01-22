@@ -7,24 +7,34 @@ public class PlayerSkill : MonoBehaviour
     public GameObject skillText;
     public GameObject can;
 
+    public Image skillH;
+    public Image skillB;
+
     float Htime;
     float Btime;
 
     int Bquantity = 0;
     int Hquantity = 0;
 
+    public float r;
+
+    private void Start()
+    {
+        Htime = 5;
+        Btime = 10;
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.C))
         { 
             if (Btime >= 10 && Bquantity < 2)
             {
-                Collider2D[] collider = Physics2D.OverlapCircleAll(transform.position, 5);
+                Collider2D[] collider = Physics2D.OverlapCircleAll(Vector3.zero, r);
                 foreach (Collider2D col in collider)
                 {
                     if (col.CompareTag("Enemy"))
                     {
-                        //col.GetComponent<State>().HP -= 1000;
+                        Destroy(col.gameObject);
                     }
                 }
                 Bquantity += 1;
@@ -60,6 +70,8 @@ public class PlayerSkill : MonoBehaviour
         }
         else
             Htime += Time.deltaTime;
+        skillB.fillAmount = Btime/10; 
+        skillH.fillAmount = Htime/5;
     }
     IEnumerator uper(string text)
     {
@@ -76,5 +88,11 @@ public class PlayerSkill : MonoBehaviour
             one += Time.deltaTime;
         }
         Destroy(clone);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(Vector3.zero, r);
     }
 }

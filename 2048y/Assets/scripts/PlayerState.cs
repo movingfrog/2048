@@ -5,6 +5,31 @@ using UnityEngine.UI;
 
 public class PlayerState : MonoBehaviour
 {
+    private static PlayerState instance;
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    public static PlayerState Instance
+    {
+        get
+        {
+            if( instance == null)
+            {
+                return null;
+            }    
+            return instance;
+        }
+    }
+    public float DMG;
     public float HP;
     public float Gauge;
     private float maxGauge;
@@ -23,7 +48,6 @@ public class PlayerState : MonoBehaviour
         switch (HP)
         {
             case 0:
-                Destroy(gameObject);
                 break;
             case 1:
                 HPbar.color = Color.red;
@@ -34,13 +58,25 @@ public class PlayerState : MonoBehaviour
             case 3:
                 HPbar.color = Color.green;
                 break;
-            default:
-                HP = 3;
-                break;
         }
         GaugeBar.fillAmount = Gauge/maxGauge;
         if (Gauge > maxGauge)
             Gauge = maxGauge;
         Gauge -= Time.deltaTime;
+        if(Gauge <= 0 || HP <= 0)
+        {
+            Debug.Log("Game Over");
+            Time.timeScale = 0;
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Enemy"))
+        {
+            HP -= 1;
+            Destroy(collision.gameObject);
+        }
     }
 }
