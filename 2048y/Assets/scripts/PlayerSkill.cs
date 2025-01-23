@@ -10,11 +10,14 @@ public class PlayerSkill : MonoBehaviour
     public Image skillH;
     public Image skillB;
 
+    public Text skillHT;
+    public Text skillBT;
+
     float Htime;
     float Btime;
 
-    int Bquantity = 0;
-    int Hquantity = 0;
+    int Bquantity = 2;
+    int Hquantity = 3;
 
     public float r;
 
@@ -27,7 +30,7 @@ public class PlayerSkill : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.C))
         { 
-            if (Btime >= 10 && Bquantity < 2)
+            if (Btime >= 10 && Bquantity > 0)
             {
                 Collider2D[] collider = Physics2D.OverlapCircleAll(Vector3.zero, r);
                 foreach (Collider2D col in collider)
@@ -36,42 +39,46 @@ public class PlayerSkill : MonoBehaviour
                     {
                         Destroy(col.gameObject);
                     }
+                    if (col.CompareTag("Boss"))
+                    {
+                        for(int i = 0; i < 10; i++)
+                        {
+                            gameObject.GetComponent<PlayerState>().DMG = 100;
+                            Instantiate(gameObject.GetComponent<PlayerAttack>().bullet, col.transform.position, Quaternion.identity);
+                            if(PowerUpItem.count == 3)
+                                gameObject.GetComponent<PlayerState>().DMG = 500;
+                        }
+                    }
                 }
-                Bquantity += 1;
+                Bquantity -= 1;
                 Btime = 0;
             }
             else
             {
-                if (Bquantity < 2)
-                    StartCoroutine(uper("폭탄을 장전하는 중 입니다"));
-                else
-                    StartCoroutine(uper("폭탄을 받아오는 중 문제가 생겼습니다"));
+                StartCoroutine(uper("아직 사용할 수 없습니다."));
             }
         }
         else
             Btime += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.K))
         {
-            if (Htime >= 5 && Hquantity < 3)
+            if (Htime >= 5 && Hquantity > 0)
             {
                 gameObject.GetComponent<PlayerState>().HP += 1;
-                Hquantity += 1;
+                Hquantity -= 1;
                 Htime = 0;
             }
             else
             {
-                if (Hquantity < 3)
-                {
-                    StartCoroutine(uper("보급을 받는 중 입니다"));
-                }
-                else
-                    StartCoroutine(uper("반창고가 다 떨어졌습니다"));
+                StartCoroutine(uper("아직 사용할 수 없습니다."));
             }
         }
         else
             Htime += Time.deltaTime;
         skillB.fillAmount = Btime/10; 
         skillH.fillAmount = Htime/5;
+        skillBT.text = Bquantity.ToString();
+        skillHT.text = Hquantity.ToString();
     }
     IEnumerator uper(string text)
     {

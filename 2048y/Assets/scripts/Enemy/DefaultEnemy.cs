@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class DefaultEnemy : MonoBehaviour
+public abstract class DefaultEnemy : MonoBehaviour
 {
     public float HP;
+    protected float score;
 
     public GameObject[] Item;
 
@@ -13,6 +15,7 @@ public class DefaultEnemy : MonoBehaviour
         if (collision.CompareTag("Bullet"))
         {
             HP -= PlayerState.Instance.DMG;
+            score += PlayerState.Instance.DMG;
             takeDamage();
             if (HP <= 0)
             {
@@ -42,7 +45,9 @@ public class DefaultEnemy : MonoBehaviour
 
     protected void drop()
     {
-        int r = Random.Range(0, 4);
-        Instantiate(Item[r], new Vector3(transform.position.x, transform.position.y - 0.5f,0), Quaternion.identity);
+        int r = Random.Range(0, 5);
+        Instantiate(Item[r], transform.position, Quaternion.identity);
     }
+
+    protected abstract void OnDestroy();
 }

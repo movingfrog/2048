@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7234932442192761758}
   - component: {fileID: 8772849866764049518}
   - component: {fileID: 8166987322279534501}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Alien 2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,8 +98,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82b7ba2b916cc5643bdf45ee1fcd66fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
-  Item: []
+  HP: 200
+  Item:
+  - {fileID: 4618911656633116561, guid: f8d969de84bcf31429dbd026a47909a5, type: 3}
+  - {fileID: 6078041825314504185, guid: 34a6b846b0723e244a9ef422d974f3fa, type: 3}
+  - {fileID: 9130868932325511128, guid: 1e2d26caa5ffaff4fbd6520e17625653, type: 3}
+  - {fileID: 1272184257945332323, guid: 3ad6c77ffbbd128439f732bb589d48e5, type: 3}
+  - {fileID: 1272184257945332323, guid: 3ad6c77ffbbd128439f732bb589d48e5, type: 3}
   Speed: 3
 --- !u!61 &8166987322279534501
 BoxCollider2D:

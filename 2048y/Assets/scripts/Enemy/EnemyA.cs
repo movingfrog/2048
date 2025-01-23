@@ -1,11 +1,10 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class EnemyA : DefaultEnemy
 {
     public float bulletSpeed;
-
-    public Vector2 vec = new Vector2(0,2.5f);
 
     private void Start()
     {
@@ -14,12 +13,12 @@ public class EnemyA : DefaultEnemy
 
     IEnumerator Pattern()
     {
-        for(float one = 0;one <1;one += Time.deltaTime)
+        Vector2 vec = new Vector2(transform.position.x, 2.5f);
+        for (float one = 0;one <1;one += Time.deltaTime)
         {
             transform.position = Vector2.Lerp(transform.position, vec, Time.deltaTime * 7);
             yield return new WaitForSeconds(0.02f);
         }
-        yield return new WaitForSeconds(0.05f);
         for(int i = 0; i < 3; i++)
         {
             GameObject bullet = Instantiate(EnemyManager.Instance.Bullet);
@@ -32,12 +31,17 @@ public class EnemyA : DefaultEnemy
             rigid.AddForce(dirVec.normalized * bulletSpeed, ForceMode2D.Impulse);
             yield return new WaitForSeconds(1);
         }
-        yield return null;
         for(float one = 0;one < 1;one += Time.deltaTime)
         {
             transform.position = Vector2.Lerp(transform.position, new Vector2(transform.position.x, -7.5f), Time.deltaTime * 7);
             yield return new WaitForSeconds(0.02f);
         }
         Destroy(gameObject);
+    }
+
+    protected override void OnDestroy()
+    {
+        PlayerState.Instance.score += score;
+        Debug.Log("dfsjklsfdjkl");
     }
 }

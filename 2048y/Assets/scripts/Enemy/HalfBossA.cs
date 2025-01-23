@@ -26,4 +26,9 @@ public class HalfBossA : DefaultEnemy
 
         Invoke("Fire", 3.5f);
     }
+    protected override void OnDestroy()
+    {
+        PlayerState.Instance.score += score;
+        drop();
+    }
 }

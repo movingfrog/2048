@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 937496765092310701}
   - component: {fileID: 6379687051687427982}
   - component: {fileID: 1523551988329375929}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Alien 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -161,7 +161,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46acbc9bdd25cd54c8648bce298913a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
-  Item: []
+  HP: 200
+  Item:
+  - {fileID: 4618911656633116561, guid: f8d969de84bcf31429dbd026a47909a5, type: 3}
+  - {fileID: 6078041825314504185, guid: 34a6b846b0723e244a9ef422d974f3fa, type: 3}
+  - {fileID: 9130868932325511128, guid: 1e2d26caa5ffaff4fbd6520e17625653, type: 3}
+  - {fileID: 1272184257945332323, guid: 3ad6c77ffbbd128439f732bb589d48e5, type: 3}
+  - {fileID: 1272184257945332323, guid: 3ad6c77ffbbd128439f732bb589d48e5, type: 3}
   bulletSpeed: 10
-  vec: {x: 0, y: 2.5}

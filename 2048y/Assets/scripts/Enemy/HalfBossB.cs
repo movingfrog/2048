@@ -13,8 +13,8 @@ public class HalfBossB : DefaultEnemy
 
     void fire()
     {
-        int roundA = 20;
-        int roundB = 10;
+        int roundA = 30;
+        int roundB = 20;
         int round = currentpatern % 2 == 0? roundA : roundB;
 
         for(int i = 0; i < round; i++)
@@ -38,5 +38,11 @@ public class HalfBossB : DefaultEnemy
         }
         else
             fire();
+    }
+
+    protected override void OnDestroy()
+    {
+        PlayerState.Instance.score += score;
+        drop();
     }
 }

@@ -17,4 +17,9 @@ public class EnemyB : DefaultEnemy
     {
         transform.position = Vector2.Lerp(transform.position, vec, Speed * Time.deltaTime);
     }
+
+    protected override void OnDestroy()
+    {
+        PlayerState.Instance.score += score;
+    }
 }

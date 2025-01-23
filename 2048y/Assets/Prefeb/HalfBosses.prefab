@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4619194934280790651}
   - component: {fileID: 7270851462736785777}
   - component: {fileID: 1615431269480911764}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Huge 1
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +99,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 3000
-  Item: []
+  Item:
+  - {fileID: 4618911656633116561, guid: f8d969de84bcf31429dbd026a47909a5, type: 3}
+  - {fileID: 6078041825314504185, guid: 34a6b846b0723e244a9ef422d974f3fa, type: 3}
+  - {fileID: 9130868932325511128, guid: 1e2d26caa5ffaff4fbd6520e17625653, type: 3}
+  - {fileID: 1272184257945332323, guid: 3ad6c77ffbbd128439f732bb589d48e5, type: 3}
+  - {fileID: 1272184257945332323, guid: 3ad6c77ffbbd128439f732bb589d48e5, type: 3}
 --- !u!61 &1615431269480911764
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -157,9 +162,9 @@ GameObject:
   - component: {fileID: 8783366676724145948}
   - component: {fileID: 1976681848877910369}
   - component: {fileID: 8332867633440957985}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Destroyer 1
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -289,7 +294,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 3000
-  Item: []
+  Item:
+  - {fileID: 4618911656633116561, guid: f8d969de84bcf31429dbd026a47909a5, type: 3}
+  - {fileID: 6078041825314504185, guid: 34a6b846b0723e244a9ef422d974f3fa, type: 3}
+  - {fileID: 9130868932325511128, guid: 1e2d26caa5ffaff4fbd6520e17625653, type: 3}
+  - {fileID: 1272184257945332323, guid: 3ad6c77ffbbd128439f732bb589d48e5, type: 3}
+  - {fileID: 1272184257945332323, guid: 3ad6c77ffbbd128439f732bb589d48e5, type: 3}
 --- !u!1 &8578511768822463603
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,9 +309,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 436996316894389787}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HalfBosses
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -336,9 +346,9 @@ GameObject:
   - component: {fileID: 3081534400003443092}
   - component: {fileID: 7754242915323547737}
   - component: {fileID: 3566232657932088487}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cruiser 3
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -423,7 +433,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 3000
-  Item: []
+  Item:
+  - {fileID: 4618911656633116561, guid: f8d969de84bcf31429dbd026a47909a5, type: 3}
+  - {fileID: 6078041825314504185, guid: 34a6b846b0723e244a9ef422d974f3fa, type: 3}
+  - {fileID: 9130868932325511128, guid: 1e2d26caa5ffaff4fbd6520e17625653, type: 3}
+  - {fileID: 1272184257945332323, guid: 3ad6c77ffbbd128439f732bb589d48e5, type: 3}
+  - {fileID: 1272184257945332323, guid: 3ad6c77ffbbd128439f732bb589d48e5, type: 3}
 --- !u!61 &3566232657932088487
 BoxCollider2D:
   m_ObjectHideFlags: 0

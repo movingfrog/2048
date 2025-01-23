@@ -22,5 +22,10 @@ public class HalfBossC : DefaultEnemy
         Debug.Log("dfslkj");
         Invoke("Fire", 0.4f);
     }
+    protected override void OnDestroy()
+    {
+        PlayerState.Instance.score += score;
+        drop();
+    }
 
 }

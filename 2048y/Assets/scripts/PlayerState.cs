@@ -22,10 +22,10 @@ public class PlayerState : MonoBehaviour
     {
         get
         {
-            if( instance == null)
+            if(instance == null)
             {
                 return null;
-            }    
+            }
             return instance;
         }
     }
@@ -33,9 +33,11 @@ public class PlayerState : MonoBehaviour
     public float HP;
     public float Gauge;
     private float maxGauge;
+    public float score = 0;
 
     public Image HPbar;
     public Image GaugeBar;
+    public Text Score;
 
     private void Start()
     {
@@ -59,14 +61,18 @@ public class PlayerState : MonoBehaviour
                 HPbar.color = Color.green;
                 break;
         }
+        if (Gauge > 100)
+            Gauge = 100;
         GaugeBar.fillAmount = Gauge/maxGauge;
         if (Gauge > maxGauge)
             Gauge = maxGauge;
         Gauge -= Time.deltaTime;
+        Score.text = score.ToString();
         if(Gauge <= 0 || HP <= 0)
         {
             Debug.Log("Game Over");
             Time.timeScale = 0;
+            gameObject.transform.GetChild(0).transform.parent = GameObject.FindWithTag("MainCamera").transform;
             Destroy(gameObject);
         }
     }
@@ -76,7 +82,35 @@ public class PlayerState : MonoBehaviour
         if(collision.CompareTag("Enemy"))
         {
             HP -= 1;
+            hitsc(2.5f);
             Destroy(collision.gameObject);
         }
     }
+
+    public void hitsc(float hita)
+    {
+        gameObject.layer = 7;
+        StartCoroutine(hit());
+        Invoke("ch", hita);
+    }
+
+    bool isbool = true;
+
+    IEnumerator hit()
+    {
+        while (isbool)
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            yield return new WaitForSeconds(0.3f);
+            gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            yield return new WaitForSeconds(0.3f);
+        }
+    }
+
+    void ch()
+    {
+        isbool = false;
+        gameObject.layer = 6;
+    }
+
 }
