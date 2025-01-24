@@ -11,6 +11,10 @@ public class HalfBossB : DefaultEnemy
         fire();
     }
 
+    protected override void Take()
+    {
+        takeDamage(gameObject.GetComponent<SpriteRenderer>());
+    }
     void fire()
     {
         int roundA = 30;
@@ -42,7 +46,8 @@ public class HalfBossB : DefaultEnemy
 
     protected override void OnDestroy()
     {
-        PlayerState.Instance.score += score;
+        RankingManager.Instance.score += score;
+        EnemyManager.Instance.iscutB = true;
         drop();
     }
 }

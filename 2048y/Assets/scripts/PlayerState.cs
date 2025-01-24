@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerState : MonoBehaviour
@@ -33,15 +33,16 @@ public class PlayerState : MonoBehaviour
     public float HP;
     public float Gauge;
     private float maxGauge;
-    public float score = 0;
 
     public Image HPbar;
     public Image GaugeBar;
     public Text Score;
+    public GameObject result;
 
     private void Start()
     {
         maxGauge = Gauge;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void Update()
@@ -66,14 +67,16 @@ public class PlayerState : MonoBehaviour
         GaugeBar.fillAmount = Gauge/maxGauge;
         if (Gauge > maxGauge)
             Gauge = maxGauge;
-        Gauge -= Time.deltaTime;
-        Score.text = score.ToString();
+        if(SceneManager.GetActiveScene().name != "MainMenu")
+            Gauge -= Time.deltaTime;
+        Score.text = RankingManager.Instance.score.ToString();
         if(Gauge <= 0 || HP <= 0)
         {
             Debug.Log("Game Over");
             Time.timeScale = 0;
+            end();
             gameObject.transform.GetChild(0).transform.parent = GameObject.FindWithTag("MainCamera").transform;
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
@@ -111,6 +114,32 @@ public class PlayerState : MonoBehaviour
     {
         isbool = false;
         gameObject.layer = 6;
+    }
+
+    public void end()
+    {
+        result.SetActive(true);
+        RankingManager.Instance.ResetALL();
+    }
+
+    public void addscore(string @string)
+    {
+        RankingManager.Instance.addscore(@string);
+        Destroy(gameObject);
+        SceneManager.LoadScene(0);
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(scene.name == "MainMenu")
+        {
+            Destroy(gameObject);
+        }
     }
 
 }

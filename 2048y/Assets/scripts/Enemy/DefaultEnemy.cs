@@ -16,7 +16,7 @@ public abstract class DefaultEnemy : MonoBehaviour
         {
             HP -= PlayerState.Instance.DMG;
             score += PlayerState.Instance.DMG;
-            takeDamage();
+            Take();
             if (HP <= 0)
             {
                 if (Random.Range(1, 6) == 3)
@@ -28,9 +28,13 @@ public abstract class DefaultEnemy : MonoBehaviour
         }
     }
 
-    protected void takeDamage()
+    protected virtual void Take()
     {
-        SpriteRenderer sp = gameObject.GetComponent<SpriteRenderer>();
+
+    }
+
+    protected void takeDamage(SpriteRenderer sp)
+    {
         if(sp.color.a == 255)
         {
             sp.color = new Color(255, 255, 255, 100);

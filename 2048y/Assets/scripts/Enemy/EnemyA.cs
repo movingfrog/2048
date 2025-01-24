@@ -41,7 +41,7 @@ public class EnemyA : DefaultEnemy
 
     protected override void OnDestroy()
     {
-        PlayerState.Instance.score += score;
+        RankingManager.Instance.score += score;
         Debug.Log("dfsjklsfdjkl");
     }
 }

@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("wall") || collision.CompareTag("Enemy"))
+        if (collision.CompareTag("wall") || collision.CompareTag("Enemy") || collision.CompareTag("Boss"))
         {
             Destroy(this.gameObject);
         }

@@ -20,6 +20,6 @@ public class EnemyB : DefaultEnemy
 
     protected override void OnDestroy()
     {
-        PlayerState.Instance.score += score;
+        RankingManager.Instance.score += score;
     }
 }

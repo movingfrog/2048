@@ -21,13 +21,15 @@ public class HealKit : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            PlayerState.Instance.Gauge += 5;
+            PlayerState.Instance.Gauge += 20;
             Destroy(gameObject);
         }
+        if (collision.CompareTag("wall"))
+            Destroy(gameObject);
     }
 
     private void OnDestroy()
     {
-        PlayerState.Instance.score += 500;
+        RankingManager.Instance.score += 500;
     }
 }

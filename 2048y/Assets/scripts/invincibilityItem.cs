@@ -23,9 +23,11 @@ public class invincibilityItem : MonoBehaviour
             PlayerState.Instance.hitsc(5f);
             Destroy(gameObject);
         }
+        if (collision.CompareTag("wall"))
+            Destroy(gameObject);
     }
     private void OnDestroy()
     {
-        PlayerState.Instance.score += 500;
+        RankingManager.Instance.score += 500;
     }
 }

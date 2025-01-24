@@ -239,10 +239,10 @@ MonoBehaviour:
   Enemy:
   - {fileID: 4359413611270549544, guid: 268442df18a158946b816f874cb9a674, type: 3}
   - {fileID: 6791295310865518532, guid: 39204b1704c6b214cad2c4438388a671, type: 3}
-  Boss: {fileID: 8578511768822463603, guid: 2484ae092bc557943877bfe539114b65, type: 3}
+  Boss: {fileID: 5790267992211578899, guid: 1d483656ec7fa2b4fbd051f73a62f85a, type: 3}
   UI: {fileID: 2136908239}
-  SpawnSec: 1
-  BossSpaw: 30
+  SpawnSec: 0.5
+  BossSpaw: 25
   iscutA: 0
   iscutB: 0
   iscutC: 0

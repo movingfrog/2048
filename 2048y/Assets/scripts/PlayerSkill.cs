@@ -16,8 +16,8 @@ public class PlayerSkill : MonoBehaviour
     float Htime;
     float Btime;
 
-    int Bquantity = 2;
-    int Hquantity = 3;
+    public int Bquantity = 2;
+    public int Hquantity = 3;
 
     public float r;
 
@@ -44,9 +44,10 @@ public class PlayerSkill : MonoBehaviour
                         for(int i = 0; i < 10; i++)
                         {
                             gameObject.GetComponent<PlayerState>().DMG = 100;
-                            Instantiate(gameObject.GetComponent<PlayerAttack>().bullet, col.transform.position, Quaternion.identity);
+                            GameObject clone = Instantiate(gameObject.GetComponent<PlayerAttack>().bullet, col.transform.position, Quaternion.identity);
                             if(PowerUpItem.count == 3)
                                 gameObject.GetComponent<PlayerState>().DMG = 500;
+                            Destroy(clone);
                         }
                     }
                 }

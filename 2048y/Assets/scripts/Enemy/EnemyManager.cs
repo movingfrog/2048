@@ -45,6 +45,9 @@ public class EnemyManager : MonoBehaviour
         if(iscutA && iscutB && iscutC)
         {
             Destroy(gameObject);
+            iscutA = false;
+            iscutB = false;
+            iscutC = false;
         }
     }
 
@@ -61,6 +64,7 @@ public class EnemyManager : MonoBehaviour
         StartCoroutine(warning());
         while(isbool)
         {
+            yield return new WaitForSeconds(SpawnSec);
             int enemy = Random.Range(0, 2);
 
             int location = Random.Range(0, 3);
@@ -73,7 +77,6 @@ public class EnemyManager : MonoBehaviour
             {
                 Instantiate(Enemy[enemy], SpawnLocationB[location].transform.position, Quaternion.Euler(new Vector3(0, 0, 180)));
             }
-            yield return new WaitForSeconds(SpawnSec);
         }
     }
 
@@ -99,5 +102,6 @@ public class EnemyManager : MonoBehaviour
     private void OnDestroy()
     {
         Destroy(instance);
+        PlayerState.Instance.end();
     }
 }

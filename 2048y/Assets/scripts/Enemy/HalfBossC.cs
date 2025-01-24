@@ -9,6 +9,10 @@ public class HalfBossC : DefaultEnemy
         Fire();
     }
 
+    protected override void Take()
+    {
+        takeDamage(gameObject.GetComponent<SpriteRenderer>());
+    }
     void Fire()
     {
         GameObject bullet = Instantiate(EnemyManager.Instance.Bullet);
@@ -24,7 +28,8 @@ public class HalfBossC : DefaultEnemy
     }
     protected override void OnDestroy()
     {
-        PlayerState.Instance.score += score;
+        RankingManager.Instance.score += score;
+        EnemyManager.Instance.iscutC = true;
         drop();
     }
 

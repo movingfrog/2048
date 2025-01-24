@@ -10,6 +10,10 @@ public class HalfBossA : DefaultEnemy
         Invoke("Fire", 3.5f);
     }
 
+    protected override void Take()
+    {
+        takeDamage(gameObject.GetComponent<SpriteRenderer>());
+    }
     private void Fire()
     {
         for (int index = 0;index < 5; index++)
@@ -28,7 +32,8 @@ public class HalfBossA : DefaultEnemy
     }
     protected override void OnDestroy()
     {
-        PlayerState.Instance.score += score;
+        RankingManager.Instance.score += score;
+        EnemyManager.Instance.iscutA = true;
         drop();
     }
 }
